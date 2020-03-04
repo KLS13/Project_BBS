@@ -19,6 +19,20 @@ public class BoardController {
 
 	@Inject
 	BoardService service;
+	
+	@RequestMapping(value="/diaryInsert", produces="application/json")
+	@ResponseBody
+	public String diaryInsert(DiaryVo vo) throws Exception{
+		
+		try {
+			service.diaryInsert(vo);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "YES";
+		
+	}
 
 	// 게시물 작성
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
