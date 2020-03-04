@@ -3,6 +3,11 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.bbs.dao.mapper.board">
+	
+<insert id="diaryInset" parameterType="com.project.bbs.domain.DiaryVo">
+insert into diary values( #{writer}, #{content})
+</insert>
+	
 <!-- 게시물 목록 -->
 <select id="list" resultType="com.project.bbs.domain.BoardVo">
  SELECT
