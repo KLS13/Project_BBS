@@ -3,8 +3,13 @@ package com.project.bbs.service;
 import java.util.List;
 
 import com.project.bbs.domain.BoardVo;
+import com.project.bbs.domain.DiaryVo;
 
 public interface BoardService {
+	
+	public DiaryVo secretDiary(String writer) throws Exception;
+	
+	public void diaryInsert(DiaryVo vo) throws Exception;
 
 	 public List<BoardVo>list() throws Exception; 
 	 

@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.project.bbs.domain.BoardVo;
+import com.project.bbs.domain.DiaryVo;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -68,6 +69,18 @@ public class BoardDAOImpl implements BoardDAO {
 	public void viewCnt(int bno) throws Exception {
 		sql.update(namespace + ".viewCnt", bno);
 		
+	}
+
+	@Override
+	public void diaryInsert(DiaryVo vo) throws Exception {
+		sql.insert(namespace + ".diaryInsert" , vo);
+		
+	}
+
+	@Override
+	public DiaryVo secretDiary(String writer) throws Exception {
+		
+		 return sql.selectOne(namespace + ".secretDiary" + writer);
 	}
 
 }

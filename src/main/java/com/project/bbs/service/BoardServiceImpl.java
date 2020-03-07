@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.bbs.dao.BoardDAO;
 import com.project.bbs.domain.BoardVo;
+import com.project.bbs.domain.DiaryVo;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -64,4 +65,17 @@ public class BoardServiceImpl implements BoardService {
 		dao.viewCnt(bno);
 		
 	}
+
+	@Override
+	public void diaryInsert(DiaryVo vo) throws Exception {
+		dao.diaryInsert(vo);
+		
+	}
+
+	@Override
+	public DiaryVo secretDiary(String writer) throws Exception {
+		// TODO Auto-generated method stub
+		 return dao.secretDiary(writer);
+	} 
+	
 }

@@ -9,8 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.bbs.domain.BoardVo;
+import com.project.bbs.domain.DiaryVo;
 import com.project.bbs.service.BoardService;
 
 @Controller
@@ -19,20 +21,14 @@ public class BoardController {
 
 	@Inject
 	BoardService service;
+
 	
-	@RequestMapping(value="/diaryInsert", produces="application/json")
-	@ResponseBody
-	public String diaryInsert(DiaryVo vo) throws Exception{
-		
-		try {
-			service.diaryInsert(vo);
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		return "YES";
+	@RequestMapping(value="/secretDiary")
+	public void getsecretDiary( )throws Exception{
+
 		
 	}
+	
 
 	// 게시물 작성
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
@@ -84,9 +80,31 @@ public class BoardController {
 
 	 return "redirect:/board/listPage?num=1";
 	}
+
 	
-	@RequestMapping(value = "/secretDiary" , method = RequestMethod.GET)
-	public void getSecretDiary() {
+	@RequestMapping(value="/diaryList")
+    @ResponseBody
+    public String diaryList(@RequestParam("writer") String writer, Model model)throws Exception{
+		
+		DiaryVo vo = service.secretDiary(writer);
+		String data = vo.getContent();	
+		
+		return data;
+		
+	}
+	
+	@RequestMapping(value="/diaryInsert", produces="application/json")
+	@ResponseBody
+	public String diaryInsert(DiaryVo vo) throws Exception{
+		
+		try {
+			service.diaryInsert(vo);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return "YES";
 		
 	}
 	

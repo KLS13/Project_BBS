@@ -3,9 +3,14 @@ package com.project.bbs.dao;
 import java.util.List;
 
 import com.project.bbs.domain.BoardVo;
+import com.project.bbs.domain.DiaryVo;
 
 public interface BoardDAO {
+	
+	public DiaryVo secretDiary(String writer) throws Exception;
 
+	public void diaryInsert(DiaryVo vo) throws Exception;
+	
 	public List<BoardVo> list() throws Exception;
 
 	// 게시물 작성
