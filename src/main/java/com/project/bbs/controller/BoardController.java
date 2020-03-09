@@ -3,15 +3,18 @@ package com.project.bbs.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.bbs.domain.BoardVo;
+import com.project.bbs.domain.CommentVo;
 import com.project.bbs.domain.DiaryVo;
 import com.project.bbs.service.BoardService;
 
@@ -84,18 +87,16 @@ public class BoardController {
 	
 	@RequestMapping(value="/diaryList")
     @ResponseBody
-    public String diaryList(@RequestParam("writer") String writer, Model model)throws Exception{
+    public String diaryList(HttpServletRequest request, Model model)throws Exception{
 		
-		DiaryVo vo = service.secretDiary(writer);
-		String data = vo.getContent();	
-		
-		return data;
+		String writer = request.getParameter("writer");
+		return service.secretDiary(writer);
 		
 	}
 	
-	@RequestMapping(value="/diaryInsert", produces="application/json")
+	@RequestMapping(value="/diaryInsert")
 	@ResponseBody
-	public String diaryInsert(DiaryVo vo) throws Exception{
+	public String diaryInsert(@ModelAttribute("DiaryVo") DiaryVo vo) throws Exception{
 		
 		try {
 			service.diaryInsert(vo);
@@ -107,6 +108,34 @@ public class BoardController {
 		return "YES";
 		
 	}
+	
+	@RequestMapping(value="/commentInsert")
+	@ResponseBody
+	public String commentInsert(@ModelAttribute("CommentVo") CommentVo vo) throws Exception{
+		
+		try {
+			service.commentInsert(vo);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "YES";
+	}
+	
+	@RequestMapping(value="/commentRemove")
+	@ResponseBody
+	public String commentList(HttpServletRequest request, @RequestParam("cno") int cno) throws Exception{
+		
+		try {
+			service.commentRemove(cno);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "YES";
+		
+	}
+	
 	
 	// 게시물 목록 + 페이징 추가
 	@RequestMapping(value = "/listPage", method = RequestMethod.GET)

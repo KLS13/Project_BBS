@@ -3,11 +3,18 @@ package com.project.bbs.service;
 import java.util.List;
 
 import com.project.bbs.domain.BoardVo;
+import com.project.bbs.domain.CommentVo;
 import com.project.bbs.domain.DiaryVo;
 
 public interface BoardService {
 	
-	public DiaryVo secretDiary(String writer) throws Exception;
+	public void commentRemove(int cno) throws Exception;
+	
+	public List<CommentVo> commentList() throws Exception;
+	
+	public void commentInsert(CommentVo vo) throws Exception;
+	
+	public String secretDiary(String writer) throws Exception;
 	
 	public void diaryInsert(DiaryVo vo) throws Exception;
 

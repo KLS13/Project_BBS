@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.bbs.dao.BoardDAO;
 import com.project.bbs.domain.BoardVo;
+import com.project.bbs.domain.CommentVo;
 import com.project.bbs.domain.DiaryVo;
 
 @Service
@@ -73,9 +74,27 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public DiaryVo secretDiary(String writer) throws Exception {
+	public String secretDiary(String writer) throws Exception {
 		// TODO Auto-generated method stub
 		 return dao.secretDiary(writer);
+	}
+
+	@Override
+	public void commentInsert(CommentVo vo) throws Exception {
+		dao.commentInsert(vo);
+		
+	}
+
+	@Override
+	public List<CommentVo> commentList() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.commentList();
+	}
+
+	@Override
+	public void commentRemove(int cno) throws Exception {
+		dao.commentRemove(cno);
+		
 	} 
 	
 }

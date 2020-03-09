@@ -4,14 +4,26 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.bbs.dao.mapper.board">
 
-<select id="secretDiary" parameterType="String" resultType="com.project.bbs.domain.DiaryVo">
+<delete id="commentRemove" parameterType="int">
+delete from comment where cno = #{cno}
+</delete>
+
+<select id="commentList" resultType="com.project.bbs.domain.CommentVo">
+select * from comment order by cno desc
+</select>
+
+<insert id="commentInsert" parameterType="com.project.bbs.domain.CommentVo">
+insert into comment(comment,writer,regDate) values(#{comment}, #{writer},now())
+</insert>
+
+<select id="secretDiary" parameterType="String" resultType="String">
 select group_concat(content) from diary where writer = #{writer}
 </select>
 
-
-<update id="diaryInset" parameterType="com.project.bbs.domain.DiaryVo">
+<!-- 다이어리 등록 -->
+<insert id="diaryInset" parameterType="com.project.bbs.domain.DiaryVo">
 insert into diary values(#{writer}, #{content})
-</update>
+</insert>
 
 <!-- 게시물 목록 -->
 <select id="list" resultType="com.project.bbs.domain.BoardVo">
