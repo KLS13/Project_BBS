@@ -15,7 +15,8 @@
 	width:1200px;
 	height: 40px;
 	margin: 0 auto;
-	margin-bottom: 100px;
+	margin-top: 30px;
+	margin-bottom: 50px;
 	
 }
 
@@ -45,7 +46,6 @@
 	background-color: #4d4d4d;
 }
 </style>
-<title>Home</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
 <script type="text/javascript">
 var id = '${pageContext.request.userPrincipal.name}';
@@ -58,6 +58,8 @@ $(function(){
 	  }
   });
 });
+
+
 </script>
 </head>
 <body>
@@ -80,3 +82,5 @@ $(function(){
 			</nav>
 		</div>
 	</div>
+</body>
+</html>

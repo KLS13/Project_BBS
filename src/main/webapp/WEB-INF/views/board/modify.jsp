@@ -6,21 +6,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<style type="text/css">
-.pull-right{
-		background: white;
-		border: 0px;
-		width: 50px !important;
-	    height:50px !important;
-	    margin-right: 5px;
-		}
-	
-.imgBtn {
-	width: 50px;
-	height:50px;
-		}
-</style>
+<link rel="stylesheet" type="text/css" href="/resources/css/boardCommon.css">
+<title>시크릿톡 게시글 수정</title>
 </head>
 <body>
 <form method="post">

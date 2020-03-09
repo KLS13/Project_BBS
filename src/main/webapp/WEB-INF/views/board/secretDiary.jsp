@@ -25,11 +25,13 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>시크릿 다이어리</title>
+<link rel="stylesheet" type="text/css" href="/resources/css/secretDiary.css">
 <script type="text/javascript">
 
 	$(document).ready(function() {
 
 		$('#summernote').summernote({
+			width : 500,
 			height : 400,
 			focus : true
 		});
@@ -51,10 +53,8 @@
 			url : "/board/diaryInsert",
 			data : $("#diaryForm").serialize(),
 			success : function(data) {
-				if (data == "YES") {
-					
-					alert("성공");
-					$('#summernote').val("");
+				if (data == "YES") {					
+					alert("다이어리에 저장되었습니다.");
 				}
 			},
 			error : function(request, status, error) {
@@ -66,12 +66,17 @@
 	
 	function getDiaryList() {
 		
+		
 		$.ajax({
-			type : 'GET',
+			type : 'POST',
 			url : "/board/diaryList",
 			data : $("#diaryForm").serialize(),
 			success : function(data) {
-				$('#summernote').val(data);
+
+				alert("성공" + data);
+				$('#saveContent').val(data);
+					
+				
 			},
 			error : function(request, status, error) {
 				alert("에러");
@@ -79,35 +84,12 @@
 		});
 	}
 </script>
-<style>
-.container {
-	width: 1100px;
-	height: 700px;
-	margin: 0 auto;
-	overflow: hidden;
-}
-
-h1 {
-	font-family: 'Indie Flower', cursive;
-}
-
-.dateBtn {
-	background: white;
-	border: 0px;
-	width: 50px;
-	height: 50px;
-}
-
-.imgBtn {
-	width: 50px;
-	height: 50px;
-}
-</style>
 </head>
 <body>
 	<form id="diaryForm" name="diaryForm">
 		<div class="container">
-			<div>
+		<div>
+			<div class="note1">
 				<h1>
 					Secret Diary &nbsp;&nbsp;
 					<button type="button" class="dateBtn">
@@ -116,14 +98,17 @@ h1 {
 				</h1>
 
 				<h5>Tip ! 달력 아이콘을 클릭하시면 오늘 날짜가 아래 입력되요.</h5>
-				<textarea rows="1" class="date"></textarea>
+				<textarea rows="1" class="date" id="date"></textarea>
 				<br /> <br />
-				<textarea name="content" id="summernote"><c:out
-						value="${content}" /> </textarea>
-			</div>
+				<textarea name="content" id="summernote"></textarea>
 			<input type="button" value="작성" onclick="ajax_diary()" id="diaryBtn" />
-			<input type="button" value="메모장 불러오기" onclick="getDiaryList()" id="listBtn" />
+			</div>
+			<div class="note2">
+				<pre><textarea style="resize:none" name="saveContent" id="saveContent" rows="26" cols="70" readonly="readonly"></textarea></pre>
+			<input type="button" value="다이어리 불러오기" onclick="getDiaryList()" id="listBtn" />
+			</div>
 			<input type="hidden" name="writer" id="writer" value="${pageContext.request.userPrincipal.name}" />
+			</div>
 		</div>
 	</form>
 </body>

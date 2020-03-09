@@ -9,40 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>시크릿톡 게시판</title>
-<style>
-tr :nth-child(2){
-	width: 700px;
-}
-tr :nth-child(3){
-text-align: center;
-	width: 130px;
-}
-tr :nth-child(4) {
-text-align: center;
-	width: 100px;
-}
-tr :nth-child(5) {
-text-align: center;
-	width: 100px;
-}
-
-.listClick :hover {
-	cursor: pointer;
-}
-
-	.pull-right{
-		background: white;
-		border: 0px;
-		width: 50px !important;
-	    height:50px !important;
-	    margin-right: 5px;
-	}
-	
-	.imgBtn {
-	width: 50px;
-	height:50px;
-	}
-</style>
+<link rel="stylesheet" type="text/css" href="/resources/css/listPage.css">
 </head>
 <body>
 <div class="container">
