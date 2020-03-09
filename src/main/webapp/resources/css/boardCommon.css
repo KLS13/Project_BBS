@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.pull-right{
+		background: white;
+		border: 0px;
+		width: 50px !important;
+	    height:50px !important;
+	    margin-right: 5px;
+		}
+	
+.imgBtn {
+	width: 50px;
+	height:50px;
+	margin-right: 5px;
+		}
