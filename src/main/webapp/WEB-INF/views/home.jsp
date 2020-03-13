@@ -5,53 +5,10 @@
 <jsp:include page="layout/header.jsp"></jsp:include>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+<script src="resources/js/Homejs.js"></script>
 <html>
 <head>
 <title>시크릿톡Home</title>
-<script type="text/javascript">
-
-function ajax_comment() {
-
-	$.ajax({
-		type : 'POST',
-		url : "/board/commentInsert",
-		data : $("#commentForm").serialize(),
-		success : function(data) {
-			if (data == "YES") {					
-				alert("방명록이 저장되었습니다.");
-				$('#writer').val("");
-				$('#comment').val("");
-				
-			}
-		},
-		error : function(request, status, error) {
-			
-		}
-	});
-}
-
-function commentRemove(cno) {
-
-	var cno = cno;
-	
-	$.ajax({
-		type : 'POST',
-		url : "/board/commentRemove",
-		data : {cno : cno},
-		success : function(data) {
-			if (data == "YES") {					
-				alert("삭제되었습니다.");
-				$('#writer').val("");
-				$('#comment').val("");
-				
-			}
-		},
-		error : function(request, status, error) {
-			alert("에러");
-		}
-	});
-}
-</script>
 <title>Home</title>
 <link rel="stylesheet" type="text/css" href="resources/css/home.css">
 </head>
@@ -86,7 +43,6 @@ function commentRemove(cno) {
 		</table>
 		</div>
 		<br /><hr />
-
 		<form id="commentForm" name="commentForm">
 		<table class="commentWrite" > 
 		<caption>비밀글 - 코멘트작성</caption>
